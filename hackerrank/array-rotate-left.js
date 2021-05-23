@@ -1,14 +1,13 @@
 // Simple solution
 
-function rotLeft (a, d) {
-  console.time("rotLeft")
-  for (var i = 0; i < d; i++)
-    a.push(a.shift())
-  console.timeEnd("rotLeft")
+function rotLeft(a, d) {
+  console.time('rotLeft')
+  for (var i = 0; i < d; i++) a.push(a.shift())
+  console.timeEnd('rotLeft')
   return a
 }
 
-console.log(rotLeft([1,2,3,4,5], 4).join(' '))
+console.log(rotLeft([1, 2, 3, 4, 5], 4).join(' '))
 
 // Harder solution but faster
 
@@ -23,16 +22,15 @@ function iterar(iteracoes, arr, d) {
   }
 
   if (iteracoes === d) {
-    return ultimoIndice 
+    return ultimoIndice
   }
   return iterar(iteracoes, arr, d)
 }
 
 function rotLeftDavid(arr, d) {
-  console.time("rotLeft-david")
+  console.time('rotLeft-david')
   let iteracoes = 0
   let ultimoIndice = iterar(iteracoes, arr, d)
-  
 
   const newArr = []
   for (let i = ultimoIndice; i < arr.length; i++) {
@@ -44,9 +42,9 @@ function rotLeftDavid(arr, d) {
     newArr.push(arr[i])
   }
 
-  console.timeEnd("rotLeft-david")
+  console.timeEnd('rotLeft-david')
 
   return newArr
 }
 
-console.log(rotLeftDavid([1,2,3,4,5], 4).join(' '))
+console.log(rotLeftDavid([1, 2, 3, 4, 5], 4).join(' '))
