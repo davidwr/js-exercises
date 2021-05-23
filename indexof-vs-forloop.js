@@ -11,3 +11,11 @@ for (let i = 0; i < arr.length; i++) {
   }
 }
 console.timeEnd('forLoop')
+
+console.time('find')
+arr.find(element => element === 1)
+console.timeEnd('find')
+
+console.time('findIndex')
+arr.findIndex(element => element === 1)
+console.timeEnd('findIndex')
