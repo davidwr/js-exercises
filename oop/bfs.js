@@ -7,14 +7,13 @@ graph.addNode('C')
 graph.addNode('D')
 graph.addNode('E')
 graph.addNode('F')
-graph.addNode('G')
 
-graph.addEdge('A', 'C')
 graph.addEdge('A', 'B')
+graph.addEdge('A', 'C')
 graph.addEdge('A', 'D')
-graph.addEdge('D', 'E')
-graph.addEdge('E', 'F')
-graph.addEdge('B', 'G')
+graph.addEdge('C', 'E')
+graph.addEdge('C', 'F')
+graph.addEdge('D', 'F')
 
 console.log(graph.getNodesLength())
 
