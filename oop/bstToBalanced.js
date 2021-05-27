@@ -95,8 +95,10 @@ class BinarySearchTree {
   #nodes = []
 
   constructor(rootNode) {
-    this.#root = rootNode
-    this.#nodes.push(rootNode)
+    if (rootNode) {
+      this.#root = rootNode
+      this.#nodes.push(rootNode)
+    }
   }
 
   addNode(node) {
@@ -118,8 +120,8 @@ class BinarySearchTree {
     }
   }
 
-  getNodesLenght() {
-    return this.#nodes.length
+  getNodes() {
+    return this.#nodes
   }
 
   print() {
@@ -146,5 +148,30 @@ for (let i = 0; i < 19; i++) {
   binarySearchTree.addNode(node)
 }
 
-console.log(binarySearchTree.getNodesLenght())
+console.log(binarySearchTree.getNodes().length)
 binarySearchTree.print()
+
+function rebalanceTree(bst) {
+  const nodes = bst.getNodes()
+  const sortedNodes = nodes
+    .map((n) => n.value)
+    .sort((a, b) => {
+      return a - b
+    })
+
+  const midIndex = Math.ceil(sortedNodes.length / 2)
+  const root = sortedNodes.splice(midIndex, 1)[0]
+
+  const newBst = new BinarySearchTree(new Node(root))
+  for (node of sortedNodes) {
+    newBst.addNode(new Node(node))
+  }
+
+  console.log('--------------------------------------')
+  console.log('Rebalanced tree')
+  console.log('--------------------------------------')
+  newBst.getNodes().length
+  newBst.print()
+}
+
+rebalanceTree(binarySearchTree)
