@@ -159,19 +159,28 @@ function rebalanceTree(bst) {
       return a - b
     })
 
-  const midIndex = Math.ceil(sortedNodes.length / 2)
+  const midIndex = Math.floor(sortedNodes.length / 2)
   const root = sortedNodes.splice(midIndex, 1)[0]
 
-  const newBst = new BinarySearchTree(new Node(root))
-  for (node of sortedNodes) {
-    newBst.addNode(new Node(node))
-  }
+  const perfectTree = new BinarySearchTree(new Node(root))
+
+  const midIndex2 = Math.floor(sortedNodes.length / 2)
+  let rights = sortedNodes.slice(midIndex2)
+  let lefts = sortedNodes.slice(0, midIndex2)
+  do {
+    const midIndexR = Math.floor(rights.length / 2)
+    const midIndexL = Math.floor(lefts.length / 2)
+    const nodeR = rights.splice(midIndexR, 1)[0]
+    const nodeL = lefts.splice(midIndexL, 1)[0]
+    perfectTree.addNode(new Node(nodeR))
+    perfectTree.addNode(new Node(nodeL))
+  } while (lefts.length || rights.length)
 
   console.log('--------------------------------------')
-  console.log('Rebalanced tree')
+  console.log('Rebalanced perfect tree')
   console.log('--------------------------------------')
-  newBst.getNodes().length
-  newBst.print()
+  perfectTree.getNodes().length
+  perfectTree.print()
 }
 
 rebalanceTree(binarySearchTree)
